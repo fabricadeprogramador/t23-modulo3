@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <v-toolbar app class="primary white--text">
+        <v-toolbar app class="grey darken-2 white--text">
             <v-toolbar-side-icon @click="drawer = ! drawer" class="white--text"></v-toolbar-side-icon>
             <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
             <v-spacer></v-spacer>
