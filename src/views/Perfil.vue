@@ -29,12 +29,17 @@
             @click:append="show3 = !show3"
           ></v-text-field>
 
-          <v-btn
-            :loading="loading"
-            :disabled="loading"
-            color="secondary"
-            @click="loader = 'loading'"
-          >Salvar a edição</v-btn>
+          <v-btn block color="primary" dark @click="snackbar = true">Salvar edição</v-btn>
+
+          <v-snackbar
+            v-model="snackbar"
+            :bottom="y === 'bottom'"
+            :right="x === 'right'"
+            :timeout="timeout"
+          >
+            {{ text }}
+            <v-btn flat @click="snackbar = false">Fechar!</v-btn>
+          </v-snackbar>
         </v-flex>
       </v-layout>
     </v-container>
@@ -45,10 +50,15 @@
 export default {
   data() {
     return {
-      show3: false,
-      show3: false,
-      loader: null,
-      loading: false,
+      color: null,
+
+      right: false,
+      snackbar: false,
+
+      color: "",
+      mode: "",
+      timeout: 6000,
+      text: "Usuario editado com sucesso!!",
 
       password: "Password",
       rules: {
@@ -56,32 +66,9 @@ export default {
         min: v => v.length >= 8 || "Minimo 8 caracteres"
       }
     };
-  },
-
-  watch: {
-    loader() {
-      const l = this.loader;
-      this[l] = !this[l];
-
-      setTimeout(() => (this[l] = false), 3000);
-
-      this.loader = null;
-    }
   }
 };
 </script>
 
 <style>
-.custom-loader {
-  animation: loader 1s infinite;
-  display: flex;
-}
-@-moz-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360 deg);
-  }
-}
 </style>
