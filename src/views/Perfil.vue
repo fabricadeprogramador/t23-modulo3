@@ -29,13 +29,14 @@
             @click:append="show3 = !show3"
           ></v-text-field>
 
-          <v-btn block color="primary" dark @click="snackbar = true">Salvar edição</v-btn>
+          <v-btn color="primary" dark @click="snackbar = true">Salvar edição</v-btn>
 
           <v-snackbar
             v-model="snackbar"
             :bottom="y === 'bottom'"
             :right="x === 'right'"
             :timeout="timeout"
+            color="success"
           >
             {{ text }}
             <v-btn flat @click="snackbar = false">Fechar!</v-btn>
@@ -55,7 +56,7 @@ export default {
       right: false,
       snackbar: false,
 
-      color: "",
+      color: "colorValue",
       mode: "",
       timeout: 6000,
       text: "Usuario editado com sucesso!!",
