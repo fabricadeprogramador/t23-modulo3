@@ -7,7 +7,7 @@
         <v-card class="text-xs-center">
 
           <v-card flat tile class="d-flex ma-3">
-            <v-img :src="produto.imagem" contain> </v-img>
+            <v-img :src="produto.imagem" contain max-height="200px"> </v-img>
           </v-card>
           <v-card-title primary-title>
             <div>
@@ -23,7 +23,7 @@
           <v-flex class="text-xs-right">
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-icon color="primary" dark @click="editar(props.item)" right>
+              <v-icon color="primary" dark @click="exibirDetalhes(produto)" right>
                 search
               </v-icon>
             </v-card-actions>
@@ -60,6 +60,10 @@
           .then(produtos => {
             this.produtos = produtos
           })
+      },
+
+      exibirDetalhes(produto){
+        
       }
 
     },
