@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar />
+    <NavBar v-if="this.$router.currentRoute.path !== '/login'"/>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+
   import NavBar from '@/components/NavBar'
 
   export default {
