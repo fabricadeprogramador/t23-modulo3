@@ -5,6 +5,7 @@ import Carrinho from './views/Carrinho.vue'
 import Compras from './views/Compras.vue'
 import Perfil from './views/Perfil.vue'
 import Pagamento from './views/Pagamento.vue'
+import Login from './views/Login.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: "/pagamento",
       name: "Pagamento",
       component: Pagamento
-    }
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: Login
+    },
   ]
 })
