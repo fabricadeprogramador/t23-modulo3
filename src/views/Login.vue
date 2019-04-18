@@ -18,7 +18,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Entrar</v-btn>
+                <v-btn color="primary" @click="trocarDeRota()">Entrar</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -30,10 +30,29 @@
 
 <script>
 export default {
+    data () {
+      return {
+      
+      }
+    },
+        mounted: function () {
+     
+    },
 
+    methods: {
 
+      trocarDeRota() {
+        this.$router.push('/')
+        
+      }
 
+    }
+    
+  
 }
+
+
+
 </script>
 
 <style>
