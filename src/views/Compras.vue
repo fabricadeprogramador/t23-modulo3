@@ -5,28 +5,49 @@
     </v-layout>
 <v-data-table
     :headers="headers"
-    :items="historico"
+    :items="compras"
     class="elevation-1"
   >
     <template v-slot:items="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.item }}</td>
-      <td class="text-xs-right">{{ props.item.valor }}</td>
+      <td class="text-xs-left">{{ props.item.data }}</td>
+      <td class="text-xs-left">{{ props.item.valorTotal }}</td>
+      <td class="text-xs-left">{{ props.item.pagamento }}</td>
     </template>
   </v-data-table>   
 </v-container>
 </template>
 
 <script>
+import HTTPRequest from '@/utils/HTTPRequests'
+
   export default {
     data () {
       return {
         headers: [
-          { text: 'ITEM', value: 'item' },
-          { text: 'Valor', value: 'valor' }
-        ]
+          { text: 'Data', value: 'item' },
+          { text: 'Valor', value: 'valor' },
+          { text: 'Forma de Pagamento', value: 'pagamento' },
+        ],
+
+      valid: false,
+      compras: []
       }
+    },
+        mounted: function () {
+      this.buscarCompras()
+    },
+
+    methods: {
+
+      buscarCompras() {
+        HTTPRequest.buscarCompras()
+          .then(compras => {
+            this.compras = compras
+          })
+      }
+
     }
+    
   }
 </script>
 <style>
