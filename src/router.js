@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Produtos from './views/Produtos.vue'
 import Carrinho from './views/Carrinho.vue'
 import Compras from './views/Compras.vue'
@@ -39,7 +40,8 @@ export default new Router({
     {
       path: "/login",
       name: "Login",
-      component: Login
+      component: Login,
+      
     },
   ]
 })
