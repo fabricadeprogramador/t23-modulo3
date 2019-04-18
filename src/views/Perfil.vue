@@ -48,6 +48,7 @@
 </template>
 
 <script>
+ import HTTPRequest from '@/utils/HTTPRequests'
 export default {
   data() {
     return {
@@ -67,7 +68,20 @@ export default {
         min: v => v.length >= 8 || "Minimo 8 caracteres"
       }
     };
-  }
+  },
+  mounted: function (){
+    this.buscarTodos()
+
+  },
+  buscarCliente(){
+
+    HTTPRequest.buscarTodos()
+        .then(clientes =>{
+          this.clientes = clientes
+        })
+
+  },
+
 };
 </script>
 

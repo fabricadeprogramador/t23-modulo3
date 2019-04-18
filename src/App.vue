@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar v-if="this.$router.currentRoute.path !== '/login'"/>
+    <NavBar v-if="this.$router.currentRoute.path !== '/login' && $router.currentRoute.path !== '/cadastro'"/>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -14,11 +14,14 @@
 <script>
 
   import NavBar from '@/components/NavBar'
+  import {TheMask} from 'vue-the-mask'
+
 
   export default {
     name: 'App',
     components: {
-      NavBar
+      NavBar,
+      TheMask
     },
     data() {
       return {

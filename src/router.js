@@ -7,6 +7,7 @@ import Compras from './views/Compras.vue'
 import Perfil from './views/Perfil.vue'
 import Pagamento from './views/Pagamento.vue'
 import Login from './views/Login.vue'
+import Cadastro from './views/Cadastro.vue'
 
 Vue.use(Router)
 
@@ -43,5 +44,12 @@ export default new Router({
       component: Login,
       
     },
+    {
+      path: "/cadastro",
+      name: "Cadastro",
+      component: Cadastro,
+      
+    },
+    
   ]
 })
