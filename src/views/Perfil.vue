@@ -1,10 +1,14 @@
 <template>
   <v-form v-model="valid">
     <v-container>
+       <h2>Editar Perfil</h2>
       <v-layout justify-center>
         <v-flex xs12 sm10 md8 lg6>
+          <h3> Nome</h3>
           <v-text-field value="Jão da Silva" label="Editar nome" solo></v-text-field>
+          <h3> CPF</h3>
           <v-text-field value="048.030.891-89" label="Solo" solo readonly></v-text-field>
+           <h3> Data de nascimento</h3>
           <v-text-field value="11/08/1985" label="Solo" solo readonly></v-text-field>
 
           <v-text-field
