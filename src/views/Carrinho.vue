@@ -113,7 +113,6 @@
                     this.exibirMensagem = false
                 }
                 this.calcularTotal(carrinho)
-
             },
 
             exluirItemCarriho(itemCarrinho) {
@@ -123,14 +122,11 @@
 
                     if (itemCarrinho._id == carrinho[i]._id) {
                         carrinho.splice(i, 1);
-
                     }
-
                 }
 
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
                 this.items = carrinho;
-
             },
 
             calcularTotal(carrinho) {
@@ -144,14 +140,10 @@
             pagar(){
                 alert(this.radioGroup)
             }
-
-
         },
 
         mounted: function () {
-
             this.carregarCarrinho()
-
         }
     }
 </script>
