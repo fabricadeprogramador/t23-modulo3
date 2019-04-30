@@ -56,6 +56,8 @@
               let userStr = JSON.stringify(this.usuarioRetornado[0])
               localStorage.setItem("usuarioLogado", userStr)
               alert("Login Efetuado com sucesso!")
+              this.$router.push('/carrinho')
+              //TODO: Reload na página para fechar o dialog
             }
 
           })

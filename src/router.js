@@ -6,8 +6,8 @@ import Carrinho from './views/Carrinho.vue'
 import Compras from './views/Compras.vue'
 import Perfil from './views/Perfil.vue'
 import Pagamento from './views/Pagamento.vue'
-import Login from './components/Login.vue'
 import Cadastro from './views/Cadastro.vue'
+import Logout from './views/Logout.vue'
 
 Vue.use(Router)
 
@@ -39,16 +39,15 @@ export default new Router({
       component: Pagamento
     },
     {
-      path: "/login",
-      name: "Login",
-      component: Login,
+      path: "/logout",
+      name: "Logout",
+      component: Logout,
       
     },
     {
       path: "/cadastro",
       name: "Cadastro",
       component: Cadastro,
-      
     },
     
   ]

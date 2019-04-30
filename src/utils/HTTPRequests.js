@@ -25,6 +25,10 @@ export default{
         return axios.get(API_URL + "/compras").then(response => response.data);
     },
 
+    async buscarComprasPorCliente(clienteId){
+        return axios.get(API_URL + "/compras/cliente/" + clienteId).then(response => response.data);
+    },
+
     async salvarCompra(compra){
         return axios.post(API_URL + "/compras", compra).then(response => response.data);
     }

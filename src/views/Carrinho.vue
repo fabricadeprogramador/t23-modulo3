@@ -124,12 +124,13 @@
         methods: {
 
             carregarCarrinho() {
-                let carrinho = JSON.parse(localStorage.getItem("carrinho"))
-                if (carrinho != null) {
+                let carrinhoStr = localStorage.getItem("carrinho")
+                if (carrinhoStr != null && carrinhoStr != undefined && carrinhoStr != "") {
+                    let carrinho = JSON.parse(carrinhoStr)
                     this.items = carrinho
                     this.exibirMensagem = false
+                    this.calcularTotal(carrinho)
                 }
-                this.calcularTotal(carrinho)
             },
 
             exluirItemCarriho(itemCarrinho) {
@@ -186,9 +187,14 @@
 
                         HTTPRequest.salvarCompra(this.compra)
                             .then(compra => {
-                                alert("Compra efetuada com sucesso!")
-                                localStorage.setItem("carrinho", "")
-                                this.exibirMensagem = true
+                                if (compra != null) {
+                                    alert("Compra efetuada com sucesso!")
+                                    localStorage.setItem("carrinho", "")
+                                    this.exibirMensagem = true
+                                    this.$router.push('/')
+                                }
+                                alert("Erro ao salvar compra!")
+                                this.$router.push('/')
                             })
                     })
 
@@ -197,7 +203,7 @@
             },
 
             finalizarCompra() {
-                if (localStorage.getItem("usuarioLogado") == null) {
+                if (localStorage.getItem("usuarioLogado") == null || localStorage.getItem("usuarioLogado") == "") {
                     //Abrir janela para logar
                     this.dialogLogin = true
 
@@ -206,6 +212,7 @@
 
                     if (usuarioLogado.username == "" || usuarioLogado.senha == "") {
                         //Abrir login também
+                        this.dialogLogin = true
                     } else {
                         //Abrir a janela de pagamento
                         this.dialog = true
@@ -215,8 +222,11 @@
         },
 
         mounted: function () {
+            this.dialog = false
+            this.dialogLogin = false
             this.carregarCarrinho()
-        }
+        },
+        
     }
 </script>
 

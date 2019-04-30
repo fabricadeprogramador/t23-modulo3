@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar v-if="this.$router.currentRoute.path !== '/login' && $router.currentRoute.path !== '/cadastro'"/>
+    <NavBar/>
     <v-content>
       <router-view></router-view>
     </v-content>

@@ -112,8 +112,8 @@
       },
 
       adicionarAoCarrinho() {
-        let carrinho = localStorage.getItem("carrinho")
-        if (carrinho == null) {
+        let carrinhoStr = localStorage.getItem("carrinho")
+        if(carrinhoStr == null || carrinhoStr == undefined || carrinhoStr == ""){
           let produtos = []
           produtos.push(this.produtoSelecionado)
 
