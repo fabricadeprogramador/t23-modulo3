@@ -1,92 +1,61 @@
 <template>
-  <v-form v-model="valid">
+  <v-form>
     <v-container>
-       <h2>Editar Perfil</h2>
+
       <v-layout justify-center>
         <v-flex xs12 sm10 md8 lg6>
-          <h3> Nome</h3>
-          <v-text-field value="Jão da Silva" label="Editar nome" solo></v-text-field>
-          <h3> CPF</h3>
-          <v-text-field value="048.030.891-89" label="Solo" solo readonly></v-text-field>
-           <h3> Data de nascimento</h3>
-          <v-text-field value="11/08/1985" label="Solo" solo readonly></v-text-field>
+          <v-text-field v-model="clienteCorrente.nome" label="Nome" solo></v-text-field>
+          <v-text-field v-model="clienteCorrente.cpf" label="CPF" solo></v-text-field>
+          <v-text-field v-model="clienteCorrente.dataNascimento" label="Data de Nascimento" solo></v-text-field>
 
-          <v-text-field
-            :append-icon="show3 ? 'visibility' : 'visibility_off'"
-            :rules="[rules.required, rules.min]"
-            :type="show3 ? 'text' : 'password'"
-            name="input-10-2"
-            label="Senha anterior"
-            value="wqfasds"
-            class="input-group--focused"
-            @click:append="show3 = !show3"
-          ></v-text-field>
+          <v-text-field type="password" label="Senha" v-model="clienteCorrente.usuario.senha" class="input-group--focused">
+          </v-text-field>
 
-          <v-text-field
-            :append-icon="show3 ? 'visibility' : 'visibility_off'"
-            :rules="[rules.required, rules.min]"
-            :type="show3 ? 'text' : 'password'"
-            name="input-10-2"
-            label="Nova senha"
-            value="wqfasds"
-            class="input-group--focused"
-            @click:append="show3 = !show3"
-          ></v-text-field>
+          <v-btn color="primary" dark @click="salvarCliente()">Salvar</v-btn>
 
-          <v-btn color="primary" dark @click="snackbar = true">Salvar edição</v-btn>
-
-          <v-snackbar
-            v-model="snackbar"
-            :bottom="y === 'bottom'"
-            :right="x === 'right'"
-            :timeout="timeout"
-            color="success"
-          >
-            {{ text }}
-            <v-btn flat @click="snackbar = false">Fechar!</v-btn>
-          </v-snackbar>
         </v-flex>
       </v-layout>
+
     </v-container>
   </v-form>
 </template>
 
 <script>
- import HTTPRequest from '@/utils/HTTPRequests'
-export default {
-  data() {
-    return {
-      color: null,
+  import HTTPRequest from '@/utils/HTTPRequests'
 
-      right: false,
-      snackbar: false,
+  export default {
+    data() {
+      return {
+        usuarioLogado: false,
 
-      color: "colorValue",
-      mode: "",
-      timeout: 6000,
-      text: "Usuario editado com sucesso!!",
+        clienteCorrente: {},
 
-      password: "Password",
-      rules: {
-        required: value => !!value || "Required.",
-        min: v => v.length >= 8 || "Minimo 8 caracteres"
-      }
-    };
-  },
-  mounted: function (){
-    this.buscarTodos()
+      };
+    },
 
-  },
-  buscarCliente(){
+    mounted: function () {
+      this.buscarCliente();
+    },
 
-    HTTPRequest.buscarTodos()
-        .then(clientes =>{
-          this.clientes = clientes
-        })
+    methods: {
 
-  },
+      buscarCliente() {
 
-};
+        let usuarioLogado = localStorage.getItem("usuarioLogado")
+
+        if (usuarioLogado != null && usuarioLogado != "") {
+          HTTPRequest.buscarClientePorUsuario(JSON.parse(usuarioLogado))
+            .then(clientes => {
+              this.clienteCorrente = clientes[0]
+            })
+
+        } 
+
+      },
+
+    }
+
+  };
 </script>
 
 <style>
