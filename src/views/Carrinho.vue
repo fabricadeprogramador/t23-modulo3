@@ -192,9 +192,9 @@
                                     localStorage.setItem("carrinho", "")
                                     this.exibirMensagem = true
                                     this.$router.push('/')
+                                } else{
+                                    alert("Erro ao salvar compra!")
                                 }
-                                alert("Erro ao salvar compra!")
-                                this.$router.push('/')
                             })
                     })
 

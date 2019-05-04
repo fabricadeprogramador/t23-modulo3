@@ -4,9 +4,10 @@
 
       <v-layout justify-center>
         <v-flex xs12 sm10 md8 lg6>
-          <v-text-field v-model="clienteCorrente.nome" label="Nome" solo></v-text-field>
-          <v-text-field v-model="clienteCorrente.cpf" label="CPF" solo></v-text-field>
-          <v-text-field v-model="clienteCorrente.dataNascimento" label="Data de Nascimento" solo></v-text-field>
+          <v-text-field v-model="clienteCorrente.nome" label="Nome" ></v-text-field>
+          <v-text-field v-model="clienteCorrente.cpf" label="CPF" ></v-text-field>
+          <v-text-field v-model="clienteCorrente.dataNascimento" label="Data de Nascimento" ></v-text-field>
+          <v-text-field v-model="clienteCorrente.usuario.username" label="Username" ></v-text-field>
 
           <v-text-field type="password" label="Senha" v-model="clienteCorrente.usuario.senha" class="input-group--focused">
           </v-text-field>
@@ -28,7 +29,9 @@
       return {
         usuarioLogado: false,
 
-        clienteCorrente: {},
+        clienteCorrente: {
+          "usuario": {}
+        },
 
       };
     },
@@ -52,6 +55,22 @@
         } 
 
       },
+
+      salvarCliente(){
+
+        this.clienteCorrente.usuario.tipo = 'CLIENTE'
+
+        HTTPRequest.salvarCliente(this.clienteCorrente)
+          .then(cliente => {
+              if(cliente._id != undefined){
+                alert("Cliente salvo com sucesso!")
+                localStorage.setItem("usuarioLogado", JSON.stringify(cliente.usuario))
+                this.$router.push('/')
+              } else {
+                alert("Erro ao salvar cliente!")
+              }
+          })
+      }
 
     }
 
