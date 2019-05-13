@@ -42,6 +42,12 @@ export default {
 
     async salvarCompra(compra) {
         return axios.post(API_URL + "/compras", compra).then(response => response.data);
+    },
+
+    //Departamento
+
+    async buscarDepartamentoAtivo() {
+        return axios.get(API_URL + "/departamentos/ativos", departamento).then(response => response.data);
     }
 
 };

@@ -145,6 +145,7 @@
 
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
                 this.items = carrinho;
+                this.calcularTotal(carrinho)
             },
 
             calcularTotal(carrinho) {

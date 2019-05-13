@@ -48,18 +48,25 @@
 
         HTTPRequest.autenticar(this.usuario)
           .then(usuario => {
-            this.usuarioRetornado = usuario
 
-            if (this.usuarioRetornado.length == 0) {
-              alert("Usuário ou senha inválido!")
+            if (usuario == "Usuário inativado!") {
+              alert("Usuário Inativado pelo Admin!!")
+            } else if (usuario == "Usuário não informado!") {
+              alert("Usuário não informado!")
+            } else if(usuario == "Usuário ou senha inválidos!"){
+              alert("Usuário ou senha inválidos!")
             } else {
-              let userStr = JSON.stringify(this.usuarioRetornado[0])
-              localStorage.setItem("usuarioLogado", userStr)
-              alert("Login Efetuado com sucesso!")
-              this.$router.push('/carrinho')
-              //TODO: Reload na página para fechar o dialog
-            }
+              this.usuarioRetornado = usuario
 
+              if (this.usuarioRetornado.length == 0) {
+                alert("Usuário ou senha inválido!")
+              } else {
+                let userStr = JSON.stringify(this.usuarioRetornado[0])
+                localStorage.setItem("usuarioLogado", userStr)
+                alert("Login Efetuado com sucesso!")
+                this.$router.push('/carrinho')
+              }
+            }
           })
       }
     }

@@ -113,11 +113,14 @@
 
       adicionarAoCarrinho() {
         let carrinhoStr = localStorage.getItem("carrinho")
-        if(carrinhoStr == null || carrinhoStr == undefined || carrinhoStr == ""){
+        if (carrinhoStr == null || carrinhoStr == undefined || carrinhoStr == "") {
           let produtos = []
           produtos.push(this.produtoSelecionado)
 
           localStorage.setItem("carrinho", JSON.stringify(produtos))
+
+          alert("Produto adicionado ao carrinho com sucesso!")
+          this.dialog = false
         } else {
           let produtos = JSON.parse(localStorage.getItem("carrinho"))
           let jaExiste = false
@@ -131,6 +134,8 @@
           if (!jaExiste) {
             produtos.push(this.produtoSelecionado)
             localStorage.setItem("carrinho", JSON.stringify(produtos))
+            alert("Produto adicionado ao carrinho com sucesso!")
+            this.dialog = false
           } else {
             alert("Produto já adicionado ao carrinho!")
           }
